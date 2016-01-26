@@ -10,7 +10,27 @@ $(() => {
     });
 
     $("form").on("submit", function(event) {
-        alert("FILE SIZE: " + files[0].size);
+        event.preventDefault();
+
+        let data = new FormData();
+        data.append("the-file", files["0"]);
+
+        $.ajax({
+            url: window.location.origin + "/api/filemetadata",
+            type: "POST",
+            data: data,
+            cache: false,
+            processData: false,
+            contentType: false,
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert("Failed to check file size. Please try again.")
+            },
+            success: function(data) {
+                alert("FILE SIZE: " + data.fileSize);
+            }
+        });
+
+        document.getElementById("file-form").reset();
     });
 
 });
