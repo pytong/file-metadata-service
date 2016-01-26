@@ -14,7 +14,7 @@
 		<div class="container">
             <h1>Upload a file to check the size.</h1>
 
-            <form id="file-form" enctype="multipart/form-data">
+            <form method="POST" action="/api/filemetadata" id="file-form" enctype="multipart/form-data">
                 <p><input type="file" name="the-file"></p>
                 <p><input type="submit" value="Upload"></p>
             </form>
